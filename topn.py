@@ -41,7 +41,7 @@ def main():
     top_list = {}
     top_list['site'] = [] 
     for entry in data:
-        print entry
+        print(entry)
         items = data[entry]['site']
         for item in items:
             url = item['url']
