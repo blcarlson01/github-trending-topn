@@ -45,8 +45,8 @@ def main():
                 url_list.append(item['url'])
                 top_list['site'].append(item)
                 
-    file_md = os.getcwd()+'top'+TOPN.__str__()+'.md'
-    file_json = os.getcwd()+'top'+TOPN.__str__()+'.json'
+    file_md = 'top'+TOPN.__str__()+'.md'
+    file_json = 'top'+TOPN.__str__()+'.json'
 
     try:
         os.remove(file_md)
@@ -57,6 +57,8 @@ def main():
     
     write_md('Java Top '+TOPN.__str__(), top_list, file_md)
     write_json(top_list, file_json)
+    print(file_md)
+    print(file_json)
     print("COMPLETE")
 
 if __name__ == '__main__':
