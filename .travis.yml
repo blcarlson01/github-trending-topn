@@ -1,0 +1,17 @@
+language: python
+python:
+  - "3.5"
+script:
+  - python3 topn.py
+before_install:
+  - chmod +x push.sh  
+  - git clone -b gh-pages https://github.com/blcarlson01/github-trending.git
+after_success:
+  - ./push.sh
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: results
+  on:
+    branch: master
