@@ -20,8 +20,9 @@ def write_md(language, items, filename):
         for item in items['site']:            
             title = item['title']
             description = item['description']
+            tdate = item['date']
             url = item['url']
-            f.write(u"* [{title}]({url}):{description}\n".format(title=title, url=url, description=description))
+            f.write(u"* [{title}]({url}) (Trending on {date}):{description}\n".format(title=title, url=url, date=tdate, description=description))
 
 
 def main():
@@ -37,12 +38,13 @@ def main():
     url_list = []
     top_list = {}
     top_list['site'] = [] 
-    for item in data:
-        items = data[item]['site']
+    for entry in data:
+        items = data[entry]['site']
         for item in items:
             url = item['url']
             if(url not in url_list and url_list.__len__() <= TOPN):
                 url_list.append(item['url'])
+                item['date']= entry
                 top_list['site'].append(item)
                 
     file_md = 'top'+TOPN.__str__()+'.md'
