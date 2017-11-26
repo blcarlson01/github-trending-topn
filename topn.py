@@ -6,6 +6,7 @@ Created on Nov 26, 2017
 import os
 import json
 import codecs
+from collections import OrderedDict
 
 TOPN = 200
 
@@ -26,19 +27,21 @@ def write_md(language, items, filename):
 
 
 def main():
-    path_to_json = os.getcwd().replace('src','') + '/github-trending/'
+    path_to_json = os.getcwd().replace('src','') + '/'#github-trending/'
     json_files = [pos_json for pos_json in os.listdir(path_to_json) if pos_json.endswith('.json')]
-    #print(json_files)
+    print(json_files)
     
     data = {}
     for json_file in json_files:
         with open(path_to_json+json_file) as data_file:
             data[json_file.replace('.json','')] = json.load(data_file)
         
+    data = OrderedDict(sorted(data.items(), key=lambda t: t[0],reverse=True))
     url_list = []
     top_list = {}
     top_list['site'] = [] 
     for entry in data:
+        print entry
         items = data[entry]['site']
         for item in items:
             url = item['url']
