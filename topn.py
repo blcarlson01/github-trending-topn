@@ -45,8 +45,8 @@ def main():
                 url_list.append(item['url'])
                 top_list['site'].append(item)
                 
-    file_md = path_to_json+'top'+TOPN.__str__()+'.md'
-    file_json = path_to_json+'top'+TOPN.__str__()+'.json'
+    file_md = os.getcwd()+'top'+TOPN.__str__()+'.md'
+    file_json = os.getcwd()+'top'+TOPN.__str__()+'.json'
 
     try:
         os.remove(file_md)
